@@ -16,26 +16,23 @@
     items.forEach(function (li) { io.observe(li); });
   }
 
-  // Replay the tickflow crash test: acknowledged orders climb to the measured total over
-  // 10 rounds while lost stays at 0. Only the totals were recorded, so the climb is even.
-  var TOTAL = 43808, ROUNDS = 10, MS = 4200;
-  var roundEl = document.querySelector('[data-round]'), ackEl = document.querySelector('[data-acked]');
-  var zero = document.querySelector('.hero__zero');
-  var fmt = new Intl.NumberFormat('en-IN');
+  // Replay one real skillscout run: recommendations climb to 216 while the high-risk count
+  // lands on 89. Only the totals were recorded, so both climb evenly.
+  var REC = 216, FLAG = 89, MS = 2600;
+  var recEl = document.querySelector('[data-rec]'), flagEl = document.querySelector('[data-flag]');
   function play() {
-    var start = null, last = 0;
+    var start = null;
     function frame(t) {
       if (start === null) start = t;
-      var k = Math.min(1, (t - start) / MS);
-      var round = Math.min(ROUNDS, Math.floor(k * ROUNDS) + 1);
-      roundEl.textContent = round;
-      ackEl.textContent = fmt.format(Math.round(TOTAL * k));
-      if (round !== last) { last = round; zero.classList.add('is-hit'); setTimeout(function () { zero.classList.remove('is-hit'); }, 160); }
-      if (k < 1) requestAnimationFrame(frame); else { roundEl.textContent = ROUNDS; ackEl.textContent = fmt.format(TOTAL); }
+      var k = Math.min(1, (t - start) / MS), e = 1 - Math.pow(1 - k, 3);
+      recEl.textContent = Math.round(REC * e);
+      flagEl.textContent = Math.round(FLAG * e);
+      if (k < 1) requestAnimationFrame(frame);
     }
+    recEl.textContent = 0; flagEl.textContent = 0;
     requestAnimationFrame(frame);
   }
-  if (roundEl && ackEl && !reduce) setTimeout(play, 500);
+  if (recEl && flagEl && !reduce) setTimeout(play, 400);
 
   // Hover a project row to see its page, toned to ink. The card trails the pointer with a
   // critically damped follow, always from its current position, so it never jumps.
