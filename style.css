@@ -1,15 +1,17 @@
 /* Hallmark · shape: portfolio index · genre: editorial · theme: Grid (dealt 1/3, seed engineering-portfolio-student-software-17a9·d956ffef·2026-10-29·r0; chosen: an engineer's work read as a catalogue index, one ultramarine field and one red field) · job: hire
- * hero: overprint sheet, the head crossing an ultramarine field with one real figure at its foot · nav: plain bar · footer: plain · imagery: none; type and two fields · signature: the zero from the tickflow crash test, set at poster scale
+ * hero: overprint sheet, the head beside an ultramarine field from column 8, one real figure at its foot · nav: plain bar · footer: plain · imagery: none; type and two fields · signature: the zero from the tickflow crash test, set at poster scale
  * axes: light/grotesk-sans/cool · posture: full-palette · contrast: pass · fold: pass · v2.0.0 */
 @import url("./tokens.css");
 @import url("./base.css");
 
-:root { --nav-h: 72px; --field-start: calc(7 * (100% + var(--gap-columns)) / 12); }
+:root { --nav-h: 72px; }
+html { scroll-padding-top: var(--nav-h); }
 body { font-size: 1.0625rem; line-height: 1.5; }
 h1, h2, h3 { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--tracking-display); line-height: 1; text-align: start; }
 p { color: var(--color-ink-2); }
 code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em; }
 .num { font-variant-numeric: tabular-nums; }
+a, .btn { touch-action: manipulation; }
 a { color: var(--color-ink); text-underline-offset: 0.28em; text-decoration-thickness: var(--rule-hair); }
 a:hover { color: var(--color-mark); }
 ::selection { background: var(--color-mark); color: var(--color-mark-ink); }
@@ -25,7 +27,8 @@ a:hover { color: var(--color-mark); }
 .wordmark span:last-child { font-weight: 400; }
 .nav__links { display: flex; gap: var(--space-lg); margin: 0; padding: 0; list-style: none; font-size: var(--text-sm); font-weight: 500; }
 .nav__links a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; text-decoration: none; }
-@media (max-width: 40rem) { .nav .container { gap: var(--space-sm); } .nav__links { gap: var(--space-sm); } }
+@media (max-width: 40rem) { .nav .container { gap: var(--space-sm); } .nav__links { gap: var(--space-xs); } .wordmark { column-gap: var(--space-xs); } }
+@media (max-width: 22.5rem) { .nav__links a { min-width: 0; padding-inline: var(--space-2xs); } }
 
 /* controls */
 .btn { display: inline-flex; align-items: center; min-height: 52px; padding-inline: var(--space-lg); border: 0; border-radius: 0; font: 500 var(--text-md)/1 var(--font-body); text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out); }
@@ -39,13 +42,13 @@ a:hover { color: var(--color-mark); }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-lg); }
 
 /* hero: the overprint sheet */
-.hero { position: relative; isolation: isolate; }
-.hero__field { position: absolute; z-index: -1; top: 0; bottom: 0; right: 0; left: calc(var(--gutter) + (min(100vw, var(--container)) - 2 * var(--gutter)) * 7 / 12 + max(0px, (100vw - var(--container)) / 2)); background: var(--color-field); color: var(--color-field-ink); }
-.hero__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap-columns); min-height: calc(100svh - var(--nav-h)); align-content: space-between; padding-block: var(--space-2xl) var(--space-xl); }
+.hero { position: relative; isolation: isolate; container-type: inline-size; }
+.hero__field { position: absolute; z-index: -1; top: 0; bottom: 0; right: 0; left: calc(var(--gutter) + max(0px, (100cqw - var(--container)) / 2) + (min(100cqw, var(--container)) - 2 * var(--gutter) + var(--gap-columns)) * 7 / 12); background: var(--color-field); color: var(--color-field-ink); }
+.hero__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap-columns); min-height: calc(100svh - var(--nav-h)); grid-template-rows: 1fr; padding-block: var(--space-2xl) var(--space-xl); }
 .hero__text { grid-column: 1 / 8; display: grid; gap: var(--space-xl); justify-items: start; align-content: start; }
-.hero h1 { font-size: clamp(3.5rem, 8.4vw, 9rem); letter-spacing: -0.045em; line-height: 0.9; max-width: 10ch; }
+.hero h1 { font-size: clamp(3.5rem, 8.4vw, 7.5rem); letter-spacing: -0.045em; line-height: 0.9; text-wrap: balance; }
 .hero .lead { max-width: 30ch; font-size: var(--text-lead); }
-.hero__figure { grid-column: 9 / -1; align-self: end; display: grid; gap: var(--space-sm); color: var(--color-field-ink); }
+.hero__figure { --color-focus: var(--color-field-ink); grid-column: 9 / -1; align-self: end; display: grid; gap: var(--space-sm); color: var(--color-field-ink); }
 .hero__figure .num { font: 700 clamp(8rem, 18vw, 16rem)/0.8 var(--font-display); letter-spacing: -0.05em; color: var(--color-field-ink); }
 .hero__label { max-width: 28ch; font-size: var(--text-sm); font-weight: 500; color: var(--color-field-ink); }
 .hero__label code { color: inherit; }
@@ -59,7 +62,6 @@ a:hover { color: var(--color-mark); }
 /* sections */
 main > section:not(.hero) { padding-block: var(--space-3xl); }
 @media (max-width: 40rem) { main > section:not(.hero) { padding-block: var(--space-2xl); } }
-section[id] { scroll-margin-top: var(--nav-h); }
 section h2 { font-size: var(--text-section); max-width: 16ch; }
 .sec-lead { margin-top: var(--space-md); max-width: 46ch; color: var(--color-muted); }
 
@@ -74,7 +76,7 @@ section h2 { font-size: var(--text-section); max-width: 16ch; }
 .row:hover .row__name, .row:hover .row__n { color: var(--color-mark); }
 @media (max-width: 60rem) { .row__name { grid-column: 2 / -1; } .row__claim { grid-column: 2 / -1; } .row__stack { grid-column: 2 / -1; } }
 @media (max-width: 40rem) { .row { grid-template-columns: var(--space-xl) minmax(0, 1fr); column-gap: var(--space-sm); } .row__n, .row__name, .row__claim, .row__stack { grid-column: auto; } .row__n { grid-row: 1; } .row__claim, .row__stack { grid-column: 2; } .row__name { font-size: var(--text-xl); } }
-.also { margin-top: var(--space-xl); max-width: 64ch; color: var(--color-muted); }
+.also { margin-top: var(--space-xl); max-width: 64ch; line-height: 2.2; color: var(--color-muted); }
 
 .well { background: var(--color-paper-2); }
 .jobs { margin: var(--space-xl) 0 0; padding: 0; list-style: none; }
@@ -84,16 +86,16 @@ section h2 { font-size: var(--text-section); max-width: 16ch; }
 .jobs li > div { grid-column: 4 / 11; display: grid; gap: var(--space-xs); }
 .jobs h3 { font-size: var(--text-xl); letter-spacing: -0.02em; }
 .job__role { font-size: var(--text-sm); font-weight: 500; color: var(--color-muted); }
-.jobs li > div p:last-child { max-width: 60ch; }
+.jobs li > div p:last-child { max-width: 52ch; }
 @media (max-width: 40rem) { .jobs li { grid-template-columns: minmax(0, 1fr); } .job__when, .jobs li > div { grid-column: 1; } }
 
 /* the one red field */
 .field-mark { background: var(--color-mark); color: var(--color-mark-ink); --color-focus: var(--color-ink); }
 .field-mark h2, .field-mark p, .field-mark a { color: var(--color-mark-ink); }
-.field-mark a:hover { color: var(--color-ink); }
+.field-mark a:hover { color: var(--color-mark-ink); text-decoration-thickness: 3px; }
 .contact { display: grid; gap: var(--space-xl); }
 .contact__mail { font: 700 clamp(1.5rem, 4.4vw, 4rem)/1.05 var(--font-display); letter-spacing: -0.035em; overflow-wrap: anywhere; }
-.contact__mail a { text-decoration-thickness: 2px; }
+.contact__mail a { display: inline-block; padding-block: var(--space-2xs); text-decoration-thickness: 2px; }
 .contact__links { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-xl); margin: 0; padding: 0; list-style: none; font-weight: 500; }
 .contact__links a { display: inline-flex; align-items: center; min-height: 44px; }
 
@@ -103,3 +105,4 @@ section h2 { font-size: var(--text-section); max-width: 16ch; }
 .foot p { color: var(--color-muted); }
 .foot a { display: inline-flex; align-items: center; min-height: 44px; }
 code { white-space: nowrap; }
+.contact__note { max-width: 48ch; font-size: var(--text-lead); margin-top: calc(-1 * var(--space-md)); }
