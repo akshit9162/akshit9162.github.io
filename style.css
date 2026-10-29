@@ -106,3 +106,31 @@ section h2 { font-size: var(--text-section); max-width: 16ch; }
 .foot a { display: inline-flex; align-items: center; min-height: 44px; }
 code { white-space: nowrap; }
 .contact__note { max-width: 48ch; font-size: var(--text-lead); margin-top: calc(-1 * var(--space-md)); }
+
+/* motion: state, a load reveal, a crash-test replay, row previews; all off under reduced motion */
+.btn:active { transform: scale(0.97); transition: transform var(--dur-micro) var(--ease-out); }
+.hero__figure { display: grid; gap: var(--space-lg); align-content: end; }
+.hero__zero { display: grid; gap: var(--space-sm); }
+.replay { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-xs) var(--space-lg); max-width: 28ch; padding-bottom: var(--space-sm); border-bottom: var(--rule-hair) solid color-mix(in oklab, var(--color-field-ink) 40%, transparent); font-size: var(--text-sm); font-weight: 500; color: var(--color-field-ink); }
+.hero__zero .num { transition: transform var(--dur-short) var(--ease-out); }
+.hero__zero.is-hit .num { transform: translateY(-0.03em) scale(1.015); }
+
+.js .hero h1, .js .hero .lead, .js .hero .actions, .js .hero__figure { opacity: 0; transform: translateY(0.6rem); }
+.js.is-loaded .hero h1, .js.is-loaded .hero .lead, .js.is-loaded .hero .actions, .js.is-loaded .hero__figure { opacity: 1; transform: none; transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out); }
+.js.is-loaded .hero .lead { transition-delay: 80ms; }
+.js.is-loaded .hero .actions { transition-delay: 160ms; }
+.js.is-loaded .hero__figure { transition-delay: 240ms; }
+
+.js .index li, .js .jobs li { opacity: 0; transform: translateY(0.75rem); }
+.js .index li.is-in, .js .jobs li.is-in { opacity: 1; transform: none; transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out); transition-delay: calc(var(--i, 0) * 50ms); }
+
+.js .preview { position: fixed; top: 0; left: 0; z-index: var(--z-tooltip); width: 22rem; margin: 0; background: var(--color-paper-2); pointer-events: none; opacity: 0; transform: translate3d(var(--px, 0), var(--py, 0), 0) scale(0.96); transition: opacity var(--dur-short) var(--ease-out), scale var(--dur-short) var(--ease-out); will-change: transform, opacity; }
+.js .preview img { display: block; width: 100%; height: auto; filter: grayscale(1) contrast(1.08); mix-blend-mode: multiply; }
+.js .preview.is-on { opacity: 1; scale: 1.0417; }
+@media (hover: none), (pointer: coarse), (max-width: 60rem) { .js .preview { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .hero h1, .js .hero .lead, .js .hero .actions, .js .hero__figure, .js .index li, .js .jobs li { opacity: 1; transform: none; transition: none; }
+  .js .preview { transition: opacity var(--dur-short) linear; }
+  .btn:active { transform: none; }
+}
