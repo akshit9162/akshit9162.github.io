@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akshit Gupta: systems and ML engineering</title>
+<meta name="description" content="Akshit Gupta, software and ML engineer at BITS Pilani Hyderabad. Eight projects, each with a page of measured results: an order book that survives kill -9, a Kafka SAGA, a crash-safe store, grounded RAG, multilingual LoRA, an RL environment for GST.">
+<meta property="og:title" content="Akshit Gupta">
+<meta property="og:description" content="Software and ML engineer. Eight projects, each with its measurements.">
+<meta property="og:image" content="https://akshit9162.github.io/og.png">
+<meta property="og:url" content="https://akshit9162.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;700&family=Radio+Canada:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="container">
+    <a class="wordmark" href="./" aria-label="Akshit Gupta, home"><span>Akshit</span><span>Gupta</span></a>
+    <ul class="nav__links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__field" aria-hidden="true"></div>
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <h1 id="hero-title">I build systems, then measure them</h1>
+        <p class="lead">Backend, storage and ML engineer at BITS Pilani, graduating 2027.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="#work">See the work</a>
+          <a class="btn btn--secondary" href="resume/Akshit_Gupta_SDE_AI.pdf">Resume, PDF</a>
+        </div>
+      </div>
+      <p class="hero__figure"><span class="num">0</span><span class="hero__label">acknowledged orders lost of 43,808, across 10 rounds of <code>kill -9</code>. From tickflow, below.</span></p>
+    </div>
+  </section>
+
+  <section id="work" aria-labelledby="work-title">
+    <div class="container">
+      <h2 id="work-title">Selected work</h2>
+      <p class="sec-lead">Each project has its own page with the measurements and the commands that produced them.</p>
+
+      <h3 class="group">Systems</h3>
+      <ol class="index">
+        <li><a class="row" href="https://akshit9162.github.io/tickflow/"><span class="row__n num">01</span><span class="row__name">tickflow</span><span class="row__claim">An order book that survives <code>kill -9</code>: write-ahead log, group commit, 476,367 orders/s in the engine.</span><span class="row__stack">C#, .NET 8, WebSocket, SQLite</span></a></li>
+        <li><a class="row" href="https://akshit9162.github.io/Distributed-Order-System/"><span class="row__n num">02</span><span class="row__name">Distributed Order System</span><span class="row__claim">A SAGA over Kafka. 50 buyers for 10 units, none oversold. With Harsh Kokcha; I built the auction service.</span><span class="row__stack">Spring Boot, Kafka, Postgres, Redis, React</span></a></li>
+        <li><a class="row" href="https://akshit9162.github.io/logkv/"><span class="row__n num">03</span><span class="row__name">logkv</span><span class="row__claim">A crash-safe key-value store that puts a number on durability: a full flush costs 624×.</span><span class="row__stack">C++20, CRC32, SIGKILL tests</span></a></li>
+      </ol>
+
+      <h3 class="group">Machine learning</h3>
+      <ol class="index" start="4">
+        <li><a class="row" href="https://akshit9162.github.io/Grounded-RAG-Platform/"><span class="row__n num">04</span><span class="row__name">Grounded RAG</span><span class="row__claim">Hybrid retrieval, a reranker and a guardrail that names unsupported sentences. With Harsh Kokcha.</span><span class="row__stack">FastAPI, Qdrant, BM25, Claude</span></a></li>
+        <li><a class="row" href="https://akshit9162.github.io/abstain-or-route/"><span class="row__n num">05</span><span class="row__name">Abstain or Route</span><span class="row__claim">Intent routing in 10 languages with LoRA written from scratch. Swahili rises from 23.8% to 58.7%.</span><span class="row__stack">PyTorch, LoRA, calibration</span></a></li>
+        <li><a class="row" href="https://akshit9162.github.io/gst-env/"><span class="row__n num">06</span><span class="row__name">gst-env</span><span class="row__claim">An RL environment where agents file India’s GST return, graded on 13 fields within ₹1.</span><span class="row__stack">Python, tool-use agents, RL</span></a></li>
+        <li><a class="row" href="https://akshit9162.github.io/prlvs-reproduction/"><span class="row__n num">07</span><span class="row__name">PRLVS reproduction</span><span class="row__claim">A video-summarization paper that did not reproduce, and the diagnosis of why.</span><span class="row__stack">PyTorch, RL, TVSum</span></a></li>
+        <li><a class="row" href="https://akshit9162.github.io/ofdm-phy-triage/"><span class="row__n num">08</span><span class="row__name">OFDM PHY triage</span><span class="row__claim">Wireless test logs in, root cause out: 99.2% correct, against 84.9% for hand rules.</span><span class="row__stack">Python, DSP, gradient-boosted trees</span></a></li>
+      </ol>
+      <p class="also">Also on GitHub: <a href="https://akshit9162.github.io/skillscout/">skillscout</a>, a safe updater for agent skills, and <a href="https://akshit9162.github.io/Agentic-Video-Understanding-System/">a video understanding system</a> on FastAPI and Celery.</p>
+    </div>
+  </section>
+
+  <section id="experience" class="well" aria-labelledby="exp-title">
+    <div class="container">
+      <h2 id="exp-title">Experience</h2>
+      <ol class="jobs">
+        <li><p class="job__when num">May to Jul 2026</p><div><h3>Upsure.AI</h3><p class="job__role">AI/ML engineering intern</p><p>An event-driven claims pipeline on Kafka and FastAPI. Damage-detection precision from 0.56 to 0.83, OCR from about 14 s to 4 s, vehicle capture from 82 s to 27 s.</p></div></li>
+        <li><p class="job__when num">May to Jul 2025</p><div><h3>Coffeee.io</h3><p class="job__role">Software development intern</p><p>A resume parser in Python using spaCy and NLTK entity recognition.</p></div></li>
+        <li><p class="job__when num">2023 to 2027</p><div><h3>BITS Pilani, Hyderabad</h3><p class="job__role">B.E. Electrical and Electronics, minor in Computing and Intelligence</p><p>CGPA 8.12.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="contact" class="field-mark" aria-labelledby="contact-title">
+    <div class="container contact">
+      <h2 id="contact-title">Hiring an engineer?</h2>
+      <p class="contact__mail"><a href="mailto:akshitgupta9162@gmail.com">akshitgupta9162@gmail.com</a></p>
+      <ul class="contact__links">
+        <li><a href="https://www.linkedin.com/in/akshit-gupta-a3b645278/">LinkedIn</a></li>
+        <li><a href="https://github.com/akshit9162">GitHub</a></li>
+        <li><a href="resume/Akshit_Gupta_SDE.pdf">Resume, software</a></li>
+        <li><a href="resume/Akshit_Gupta_AIML.pdf">Resume, ML</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <p>Akshit Gupta, Hyderabad.</p>
+    <a href="https://github.com/akshit9162/akshit9162.github.io">Source for this page</a>
+  </div>
+</footer>
+</body>
+</html>
