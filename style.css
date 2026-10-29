@@ -1,6 +1,6 @@
-/* Hallmark · shape: portfolio index · genre: atmospheric · theme: Midnight layout in the Grid palette (chosen, colours restored on request: an engineer's work read as editorial chapters after dark, each project page shown as moonlight) · job: hire
+/* Hallmark · shape: portfolio index · genre: atmospheric · theme: Midnight (chosen: an engineer's work read as editorial chapters after dark, each project page shown as moonlight) · job: hire
  * hero: split, the head beside one real figure on a paper-2 well · nav: plain bar · footer: plain ruled · imagery: each project's own page, duotone · signature: the 89 high-risk skills from a real skillscout run, set as a title card
- * axes: light/grotesk-sans/cool · posture: committed · contrast: pass · fold: pass · v2.0.0 */
+ * axes: dark/grotesk-sans/cool · posture: committed · contrast: pass · fold: pass · v2.0.0 */
 @import url("./tokens.css");
 @import url("./base.css");
 
@@ -30,7 +30,7 @@ a:hover { text-decoration-color: var(--color-accent); }
 .btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--space-lg); border: var(--rule-hair) solid transparent; border-radius: 0; background: none; color: var(--color-ink); font: 500 var(--text-md)/1 var(--font-body); text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out); }
 .btn:active { transform: translateY(1px); }
 .btn--primary { background: var(--color-accent); color: var(--color-accent-ink); }
-.btn--primary:hover { background: color-mix(in oklab, var(--color-accent) 85%, black); }
+.btn--primary:hover { background: var(--color-focus); }
 .btn--secondary { border-color: var(--color-rule-2); }
 .btn--secondary:hover { background: var(--color-paper-2); }
 
@@ -40,11 +40,8 @@ a:hover { text-decoration-color: var(--color-accent); }
 .hero__text { grid-column: 1 / span 7; display: grid; align-content: center; gap: var(--space-lg); justify-items: start; }
 .hero h1 { max-width: 12ch; font-size: clamp(3rem, 6.4vw, 6.5rem); }
 .hero .lead { max-width: 34ch; }
-.hero__figure { grid-column: 8 / -1; display: flex; flex-direction: column; justify-content: flex-end; gap: var(--space-md); padding: var(--space-xl); background: var(--color-field); color: var(--color-field-ink); text-decoration: none; transition: background-color var(--dur-short) var(--ease-out); }
-.hero__figure:hover { background: color-mix(in oklab, var(--color-field) 88%, black); }
-.hero__figure .replay, .hero__figure .hero__label, .hero__figure .fig { color: var(--color-field-ink); }
-.hero__figure .replay { border-bottom-color: color-mix(in oklab, var(--color-field-ink) 45%, transparent); }
-.hero__figure:focus-visible { outline-color: var(--color-ink); }
+.hero__figure { grid-column: 8 / -1; display: flex; flex-direction: column; justify-content: flex-end; gap: var(--space-md); padding: var(--space-xl); background: var(--color-paper-2); color: var(--color-ink); text-decoration: none; transition: background-color var(--dur-short) var(--ease-out); }
+.hero__figure:hover { background: var(--color-paper-3); }
 .replay { display: flex; justify-content: space-between; gap: var(--space-md); margin-bottom: auto; padding-bottom: var(--space-sm); border-bottom: var(--rule-hair) solid var(--color-rule-2); font-size: var(--text-sm); font-weight: 500; color: var(--color-muted); }
 .fig { font-weight: var(--display-weight); font-stretch: var(--display-stretch); font-size: clamp(6rem, 13vw, 12rem); letter-spacing: -0.03em; line-height: 0.9; color: var(--color-ink); }
 .hero__label { max-width: 30ch; font-size: var(--text-md); color: var(--color-ink-2); }
@@ -59,6 +56,8 @@ a:hover { text-decoration-color: var(--color-accent); }
 .chapter { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-xl) var(--gap-columns); align-items: end; padding-block: var(--space-2xl); border-top: var(--rule-hair) solid var(--color-rule); }
 .chapter:first-of-type { border-top: 0; padding-top: 0; }
 .chapter__media { grid-column: 1 / span 8; aspect-ratio: 1200 / 630; }
+/* the project pages are daylight pages; their highlights stop at a dimmer blue so each reads as moonlight, not a lit sheet */
+.chapter__media[data-slot]:has(> img) { background: color-mix(in oklab, var(--color-muted) 62%, var(--color-paper)); }
 .chapter__media::after { content: ""; position: absolute; inset: 0; z-index: 2; border: 2px solid transparent; pointer-events: none; transition: border-color var(--dur-short) var(--ease-out); }
 .chapter:hover .chapter__media::after, .chapter:focus-within .chapter__media::after { border-color: var(--color-accent-2); }
 .chapter__text { grid-column: 9 / -1; display: grid; gap: var(--space-sm); align-content: end; }
@@ -101,12 +100,7 @@ a:hover { text-decoration-color: var(--color-accent); }
 @media (max-width: 60rem) { .job__when, .jobs li > div { grid-column: 1 / -1; } }
 
 /* contact */
-.contact { padding-block: var(--space-4xl) var(--space-3xl); background: var(--color-mark); color: var(--color-mark-ink); --color-focus: var(--color-ink); }
-.contact h2, .contact p, .contact a { color: var(--color-mark-ink); }
-.contact .contact__mail a, .contact .contact__links a { text-decoration-color: color-mix(in oklab, var(--color-mark-ink) 55%, transparent); }
-.contact .contact__mail a:hover, .contact .contact__links a:hover { color: var(--color-mark-ink); text-decoration-color: var(--color-mark-ink); text-decoration-thickness: 3px; }
-.contact .btn { border-color: var(--color-mark-ink); color: var(--color-mark-ink); }
-.contact .btn:hover { background: color-mix(in oklab, var(--color-mark-ink) 14%, transparent); }
+.contact { padding-block: var(--space-4xl) var(--space-3xl); background: var(--color-paper-3); color: var(--color-ink); }
 .contact__grid { display: grid; gap: var(--space-lg); justify-items: start; }
 .contact h2 { font-size: var(--text-display); }
 .contact__note { max-width: 44ch; font-size: var(--text-lead); }
